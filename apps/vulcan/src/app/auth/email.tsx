@@ -1,5 +1,6 @@
-import { useAuthActions } from '@convex-dev/auth/react';
-import { Redirect, useLocalSearchParams, useRouter } from 'expo-router';
+import { api } from '@libs/apollo-kore/convex/_generated/api';
+import { useAction } from 'convex/react';
+import { useRouter } from 'expo-router';
 import { useState } from 'react';
 import {
   ActivityIndicator,
@@ -7,34 +8,23 @@ import {
   Platform,
   Pressable,
   Text,
+  TextInput,
   View,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { authStyles } from '../../modules/auth/auth-styles';
-import { PasswordInput } from '../../modules/auth/password-input';
 
-export default function SignInScreen() {
-  const { signIn } = useAuthActions();
+const EMAIL_PATTERN = /^\S+@\S+\.\S+$/;
+
+export default function EmailScreen() {
+  const accountExists = useAction(api.auth.accountExists);
   const router = useRouter();
-  const { email } = useLocalSearchParams<{ email?: string }>();
 
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('');
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  if (!email) {
-    return <Redirect href="/auth/email" />;
-  }
-
-  const canSubmit = password.length > 0;
-
-  const handleChangeEmail = () => {
-    if (router.canGoBack()) {
-      router.back();
-    } else {
-      router.replace('/auth/email');
-    }
-  };
+  const canSubmit = EMAIL_PATTERN.test(email.trim());
 
   const handleSubmit = async () => {
     if (!canSubmit || submitting) {
@@ -44,10 +34,17 @@ export default function SignInScreen() {
     setSubmitting(true);
     setError(null);
 
+    const trimmed = email.trim();
+
     try {
-      await signIn('password', { email, password, flow: 'signIn' });
+      const exists = await accountExists({ email: trimmed });
+      router.push({
+        pathname: exists ? '/auth/signin' : '/auth/signup',
+        params: { email: trimmed },
+      });
     } catch {
-      setError('Incorrect password. Please try again.');
+      setError('Something went wrong. Please try again.');
+    } finally {
       setSubmitting(false);
     }
   };
@@ -59,18 +56,19 @@ export default function SignInScreen() {
         behavior={Platform.OS === 'ios' ? 'padding' : undefined}
       >
         <View style={authStyles.form}>
-          <Text style={authStyles.title}>Sign in</Text>
-          <View style={authStyles.emailRow}>
-            <Text style={authStyles.emailText} numberOfLines={1}>
-              {email}
-            </Text>
-            <Pressable onPress={handleChangeEmail} hitSlop={8}>
-              <Text style={authStyles.link}>Change</Text>
-            </Pressable>
-          </View>
-          <PasswordInput
-            value={password}
-            onChangeText={setPassword}
+          <Text style={authStyles.title}>Welcome</Text>
+          <Text style={authStyles.subtitle}>
+            Enter your email to sign in or create an account.
+          </Text>
+          <TextInput
+            style={authStyles.input}
+            value={email}
+            onChangeText={setEmail}
+            placeholder="Email"
+            autoCapitalize="none"
+            autoComplete="email"
+            keyboardType="email-address"
+            textContentType="emailAddress"
             autoFocus
             editable={!submitting}
             onSubmitEditing={handleSubmit}
@@ -88,7 +86,7 @@ export default function SignInScreen() {
             {submitting ? (
               <ActivityIndicator color="#ffffff" />
             ) : (
-              <Text style={authStyles.buttonText}>Sign in</Text>
+              <Text style={authStyles.buttonText}>Continue</Text>
             )}
           </Pressable>
         </View>

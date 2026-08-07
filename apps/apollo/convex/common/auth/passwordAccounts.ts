@@ -1,4 +1,5 @@
 import { retrieveAccount } from '@convex-dev/auth/server';
+import { GenericActionCtx, GenericDataModel } from 'convex/server';
 
 export const PASSWORD_PROVIDER_ID = 'password';
 
@@ -22,8 +23,10 @@ export const getRetrieveAccountFailure = (
   }
 };
 
-export const retrievePasswordAccountByEmail = async (
-  ctx: Parameters<typeof retrieveAccount>[0],
+export const retrievePasswordAccountByEmail = async <
+  DataModel extends GenericDataModel,
+>(
+  ctx: GenericActionCtx<DataModel>,
   email: string,
 ) => {
   try {

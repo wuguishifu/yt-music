@@ -41,6 +41,7 @@
     "webpack-dev-server": "^5.2.1"
   },
   "dependencies": {
+    "@libs/apollo-kore": "workspace:*",
     "@convex-dev/auth": "^0.0.94",
     "@expo/metro": "~56.0.0",
     "@expo/metro-runtime": "~56.0.14",

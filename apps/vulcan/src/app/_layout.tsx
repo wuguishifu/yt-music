@@ -3,6 +3,7 @@ import { ConvexQueryCacheProvider } from 'convex-helpers/react/cache';
 import { Stack, ThemeProvider, useTheme } from 'expo-router';
 import { convexClient } from '../modules/apollo/convex-client';
 import { convexTokenStorage } from '../modules/apollo/convex-token-storage';
+import { ImmediateFeatures } from '../modules/startup/immediate-features';
 
 export default function RootLayout() {
   const navigationTheme = useTheme();
@@ -16,6 +17,7 @@ export default function RootLayout() {
             <Stack.Screen name="auth" options={{ animation: 'none' }} />
           </Stack>
         </ThemeProvider>
+        <ImmediateFeatures />
       </ConvexQueryCacheProvider>
     </ConvexAuthProvider>
   );
