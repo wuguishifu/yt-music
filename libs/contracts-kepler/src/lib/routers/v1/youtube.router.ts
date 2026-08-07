@@ -1,5 +1,6 @@
 import z from 'zod';
 import { c } from '../../contract.js';
+import { youtubeTrackSchema } from '../../types/youtube.js';
 
 export const youtubeRouter = c.router(
   {
@@ -10,9 +11,7 @@ export const youtubeRouter = c.router(
         url: z.url(),
       }),
       responses: {
-        200: z.object({
-          streamUrl: z.url(),
-        }),
+        200: youtubeTrackSchema,
       },
     },
   },
