@@ -7,7 +7,9 @@
       "hasConvex": true
     },
     "vulcan": {
-      "hasConvex": true
+      "hasSecrets": true,
+      "hasConvex": true,
+      "publicPrefix": "EXPO_PUBLIC_"
     }
   }
 }
