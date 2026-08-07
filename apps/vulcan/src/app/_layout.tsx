@@ -13,6 +13,7 @@ export default function RootLayout() {
         <ThemeProvider value={navigationTheme}>
           <Stack screenOptions={{ headerShown: false }}>
             <Stack.Screen name="index" options={{ animation: 'none' }} />
+            <Stack.Screen name="auth" options={{ animation: 'none' }} />
           </Stack>
         </ThemeProvider>
       </ConvexQueryCacheProvider>
