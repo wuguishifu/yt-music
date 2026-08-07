@@ -5,17 +5,28 @@
   "scripts": {},
   "private": true,
   "devDependencies": {
+    "@nestjs/schematics": "^11.0.0",
     "@nx/eslint": "23.1.0",
     "@nx/eslint-plugin": "23.1.0",
     "@nx/js": "23.1.0",
+    "@nx/nest": "23.1.0",
     "@swc-node/register": "1.11.1",
     "@swc/core": "1.15.8",
     "@swc/helpers": "0.5.18",
     "@types/node": "^24.0.0",
     "eslint": "^9.8.0",
+    "eslint-config-prettier": "^10.1.8",
+    "jsonc-eslint-parser": "^3.2.0",
     "nx": "23.1.0",
     "prettier": "^3.8.1",
     "tslib": "^2.3.0",
-    "typescript": "~6.0.3"
+    "typescript": "~6.0.3",
+    "typescript-eslint": "^8.66.0"
+  },
+  "dependencies": {
+    "@ts-rest/core": "3.53.0-rc.1",
+    "@ts-rest/nest": "3.53.0-rc.1",
+    "@ts-rest/react-query": "3.53.0-rc.1",
+    "zod": "^4.4.3"
   }
 }
