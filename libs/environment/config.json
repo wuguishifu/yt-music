@@ -1,15 +1,9 @@
 {
   "infisicalDomain": "https://infisical.wuguishifu.dev",
   "infisicalProjectId": "d0d9d843-f21c-4aea-8e3f-213ee1244057",
-  "convexProjectDirectory": "apps/apollo",
   "apps": {
-    "kepler": {
-      "hasConvex": true
-    },
     "vulcan": {
-      "hasSecrets": true,
-      "hasConvex": true,
-      "publicPrefix": "EXPO_PUBLIC_"
+      "hasSecrets": true
     }
   }
 }
