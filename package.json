@@ -22,6 +22,7 @@
     "@swc/helpers": "0.5.18",
     "@types/node": "^24.0.0",
     "@types/react": "^19.2.0",
+    "@wuguishifu/nx-convex": "^0.0.1",
     "babel-preset-expo": "~56.0.14",
     "eslint": "^9.8.0",
     "eslint-config-prettier": "^10.1.8",
@@ -40,6 +41,7 @@
     "webpack-dev-server": "^5.2.1"
   },
   "dependencies": {
+    "@convex-dev/auth": "^0.0.94",
     "@expo/metro": "~56.0.0",
     "@expo/metro-runtime": "~56.0.14",
     "@expo/vector-icons": "~15.1.0",
@@ -49,6 +51,8 @@
     "@ts-rest/core": "3.53.0-rc.1",
     "@ts-rest/nest": "3.53.0-rc.1",
     "@ts-rest/react-query": "3.53.0-rc.1",
+    "convex": "1.42.3",
+    "convex-helpers": "~0.1.120",
     "dotenv": "^17.4.2",
     "expo": "~56.0.0",
     "expo-constants": "~56.0.23",
@@ -61,6 +65,8 @@
     "react": "19.2.3",
     "react-dom": "19.2.3",
     "react-native": "0.85.3",
+    "react-native-mmkv": "^4.3.2",
+    "react-native-nitro-modules": "^0.36.5",
     "react-native-safe-area-context": "~5.7.0",
     "react-native-screens": "~4.26.0",
     "react-native-svg": "15.15.4",

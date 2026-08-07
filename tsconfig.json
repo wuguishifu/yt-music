@@ -10,6 +10,12 @@
       "path": "./apps/kepler"
     },
     {
+      "path": "./libs/apollo-kore"
+    },
+    {
+      "path": "./apps/apollo"
+    },
+    {
       "path": "./apps/vulcan"
     }
   ],
