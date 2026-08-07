@@ -32,6 +32,7 @@
     "webpack-dev-server": "^5.2.1"
   },
   "dependencies": {
+    "@convex-dev/auth": "^0.0.94",
     "@nestjs/common": "^11.0.0",
     "@nestjs/core": "^11.0.0",
     "@nestjs/platform-fastify": "^11.1.28",
