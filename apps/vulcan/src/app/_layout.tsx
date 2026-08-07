@@ -6,11 +6,11 @@ export default function RootLayout() {
 
   return (
     <ThemeProvider value={navigationTheme}>
-      <Tabs screenOptions={{ headerShown: false }} initialRouteName="home">
+      <Tabs screenOptions={{ headerShown: false }} initialRouteName="index">
         <Tabs.Screen
-          name="home"
+          name="index"
           options={{
-            title: 'home',
+            title: 'Home',
             tabBarIcon: ({ color }) => <Home color={color} />,
           }}
         />
