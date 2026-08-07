@@ -4,9 +4,6 @@
   "include": [".expo/types/**/*.ts", "expo-env.d.ts"],
   "references": [
     {
-      "path": "../../libs/apollo-kore"
-    },
-    {
       "path": "./tsconfig.app.json"
     }
   ]
