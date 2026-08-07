@@ -4,10 +4,10 @@
   "files": [],
   "references": [
     {
-      "path": "./libs/contracts"
+      "path": "./libs/contracts-kepler"
     },
     {
-      "path": "./apps/server"
+      "path": "./apps/kepler"
     }
   ],
   "compilerOptions": {}

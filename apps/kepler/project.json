@@ -1,7 +1,7 @@
 {
-  "name": "server",
+  "name": "kepler",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "apps/server/src",
+  "sourceRoot": "apps/kepler/src",
   "projectType": "application",
   "tags": [],
   "targets": {
@@ -12,7 +12,7 @@
         "env": {
           "NODE_ENV": "production"
         },
-        "cwd": "apps/server"
+        "cwd": "apps/kepler"
       },
       "configurations": {
         "development": {
@@ -27,8 +27,8 @@
       "cache": true,
       "executor": "@nx/js:prune-lockfile",
       "outputs": [
-        "{workspaceRoot}/apps/server/dist/package.json",
-        "{workspaceRoot}/apps/server/dist/pnpm-lock.yaml"
+        "{workspaceRoot}/apps/kepler/dist/package.json",
+        "{workspaceRoot}/apps/kepler/dist/pnpm-lock.yaml"
       ],
       "options": {
         "buildTarget": "build"
@@ -37,7 +37,7 @@
     "copy-workspace-modules": {
       "dependsOn": ["build"],
       "cache": true,
-      "outputs": ["{workspaceRoot}/apps/server/dist/workspace_modules"],
+      "outputs": ["{workspaceRoot}/apps/kepler/dist/workspace_modules"],
       "executor": "@nx/js:copy-workspace-modules",
       "options": {
         "buildTarget": "build"
@@ -53,15 +53,15 @@
       "defaultConfiguration": "development",
       "dependsOn": ["build"],
       "options": {
-        "buildTarget": "server:build",
+        "buildTarget": "kepler:build",
         "runBuildTargetDependencies": false
       },
       "configurations": {
         "development": {
-          "buildTarget": "server:build:development"
+          "buildTarget": "kepler:build:development"
         },
         "production": {
-          "buildTarget": "server:build:production"
+          "buildTarget": "kepler:build:production"
         }
       }
     }
