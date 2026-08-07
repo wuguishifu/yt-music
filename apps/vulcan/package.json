@@ -2,6 +2,7 @@
   "name": "@org/vulcan",
   "version": "0.0.1",
   "private": true,
+  "main": "expo-router/entry",
   "scripts": {
     "eas-build-post-install": "cd ../../ && node tools/scripts/eas-build-post-install.mjs . apps/vulcan"
   },
@@ -18,6 +19,11 @@
     "react-native": "*",
     "react-native-svg": "*",
     "react-native-svg-transformer": "*",
-    "react-native-web": "*"
+    "react-native-web": "*",
+    "expo-constants": "*",
+    "expo-linking": "*",
+    "expo-router": "*",
+    "react-native-safe-area-context": "*",
+    "react-native-screens": "*"
   }
 }

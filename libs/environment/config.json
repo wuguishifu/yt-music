@@ -4,7 +4,9 @@
   "convexProjectDirectory": "apps/apollo",
   "apps": {
     "kepler": {
-      "hasSecrets": true,
+      "hasConvex": true
+    },
+    "vulcan": {
       "hasConvex": true
     }
   }
