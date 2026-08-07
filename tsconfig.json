@@ -8,6 +8,12 @@
     },
     {
       "path": "./apps/kepler"
+    },
+    {
+      "path": "./libs/apollo-kore"
+    },
+    {
+      "path": "./apps/apollo"
     }
   ],
   "compilerOptions": {}

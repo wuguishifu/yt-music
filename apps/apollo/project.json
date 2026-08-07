@@ -1,0 +1,89 @@
+{
+  "name": "apollo",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/apollo",
+  "projectType": "application",
+  "// targets": "to see all targets run: nx show project apollo --web",
+  "targets": {
+    "clean": {
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "apps/apollo",
+        "parallel": true,
+        "commands": [
+          "rm -rf ./dist",
+          "rm -rf ./node_modules",
+          "rm -rf ./out-tsc"
+        ]
+      }
+    },
+    "build": {
+      "executor": "nx:run-commands",
+      "options": {
+        "parallel": false,
+        "commands": [
+          "nx typecheck apollo --skip-sync --skip-nx-cache",
+          "nx build apollo-kore --skip-nx-cache"
+        ]
+      }
+    },
+    "build:contracts": {
+      "executor": "nx:run-commands",
+      "options": {
+        "parallel": false,
+        "commands": ["nx build apollo", "nx build apollo-kore"]
+      }
+    },
+    "convex": {
+      "executor": "nx:run-commands",
+      "//note": "Example for how to forward commands to the convex CLI: nx convex hydrogen -- dev --help",
+      "options": {
+        "cwd": "apps/apollo",
+        "forwardAllArgs": true,
+        "command": "convex"
+      }
+    },
+    "serve": {
+      "executor": "nx:run-commands",
+      "continuous": true,
+      "options": {
+        "parallel": true,
+        "commands": [
+          {
+            "command": "nx convex apollo -- dev",
+            "description": "Run Convex dev watcher",
+            "prefix": "apollo",
+            "prefixColor": "cyan"
+          },
+          {
+            "command": "nx watch-contracts apollo",
+            "description": "Rebuild apollo-kore on change",
+            "prefix": "apollo-kore",
+            "prefixColor": "magenta"
+          }
+        ]
+      }
+    },
+    "watch-contracts": {
+      "executor": "nx:run-commands",
+      "continuous": true,
+      "options": {
+        "command": "nx watch --projects=apollo --initialRun -- nx build apollo-kore"
+      }
+    },
+    "deploy": {
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "apps/apollo",
+        "command": "convex deploy"
+      }
+    },
+    "update:ai-files": {
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "apps/apollo",
+        "command": "npx convex ai-files update"
+      }
+    }
+  }
+}
