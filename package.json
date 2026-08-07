@@ -6,10 +6,14 @@
   "private": true,
   "devDependencies": {
     "@nestjs/schematics": "^11.0.0",
+    "@nestjs/testing": "^11.0.0",
     "@nx/eslint": "23.1.0",
     "@nx/eslint-plugin": "23.1.0",
     "@nx/js": "23.1.0",
     "@nx/nest": "23.1.0",
+    "@nx/node": "23.1.0",
+    "@nx/web": "23.1.0",
+    "@nx/webpack": "23.1.0",
     "@swc-node/register": "1.11.1",
     "@swc/core": "1.15.8",
     "@swc/helpers": "0.5.18",
@@ -21,12 +25,21 @@
     "prettier": "^3.8.1",
     "tslib": "^2.3.0",
     "typescript": "~6.0.3",
-    "typescript-eslint": "^8.66.0"
+    "typescript-eslint": "^8.66.0",
+    "webpack": "^5.101.3",
+    "webpack-cli": "^7.0.0",
+    "webpack-dev-server": "^5.2.1"
   },
   "dependencies": {
+    "@nestjs/common": "^11.0.0",
+    "@nestjs/core": "^11.0.0",
+    "@nestjs/platform-fastify": "^11.1.28",
     "@ts-rest/core": "3.53.0-rc.1",
     "@ts-rest/nest": "3.53.0-rc.1",
     "@ts-rest/react-query": "3.53.0-rc.1",
+    "dotenv": "^17.4.2",
+    "reflect-metadata": "^0.2.0",
+    "rxjs": "^7.8.0",
     "zod": "^4.4.3"
   }
 }
