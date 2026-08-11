@@ -28,6 +28,7 @@ export default function RootLayout() {
                     headerShown: false,
                     sceneStyle: {
                       backgroundColor: colors.bg,
+                      paddingHorizontal: 16,
                     },
                     tabBarStyle: {
                       backgroundColor: colors.surface,

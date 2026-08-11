@@ -69,11 +69,12 @@ type LayoutStyleProps = Pick<
 > & {
   inverse?: boolean;
   transparent?: boolean;
-  backgroundColorName?: ColorName;
+  bg?: ColorName;
   borderColorName?: ColorName;
   fullWidth?: boolean;
   withKeyboardAvoidingView?: boolean;
   dismissKeyboardOnTapOutside?: boolean;
+  size?: number;
 };
 
 export type ThemedViewProps = ViewProps & Partial<LayoutStyleProps>;
@@ -99,6 +100,7 @@ export function ThemedView({
   columnGap,
   width,
   height,
+  size,
   minWidth,
   minHeight,
   maxWidth,
@@ -126,7 +128,7 @@ export function ThemedView({
   borderColor,
   transparent,
   backgroundColor,
-  backgroundColorName,
+  bg: backgroundColorName,
   borderColorName,
   overflow,
   fullWidth,
@@ -159,9 +161,9 @@ export function ThemedView({
     gap,
     rowGap,
     columnGap,
-    width,
+    width: width ?? size,
     ...(fullWidth ? { width: '100%' } : {}),
-    height,
+    height: height ?? size,
     minWidth,
     minHeight,
     maxWidth,
@@ -257,7 +259,7 @@ export function ThemedSafeAreaView({
   borderWidth,
   borderColor,
   backgroundColor,
-  backgroundColorName,
+  bg: backgroundColorName,
   borderColorName,
   transparent,
   fullWidth,
