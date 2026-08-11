@@ -2,10 +2,10 @@ import { StyleSheet } from 'react-native';
 import { ThemedText } from '../modules/theme/components/themed-text';
 import { ThemedSafeAreaView } from '../modules/theme/components/themed-view';
 
-export default function Home() {
+export default function Search() {
   return (
     <ThemedSafeAreaView style={styles.container}>
-      <ThemedText>Hello World</ThemedText>
+      <ThemedText>Search</ThemedText>
     </ThemedSafeAreaView>
   );
 }

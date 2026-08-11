@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import {
   SafeAreaView,
+  useSafeAreaInsets,
   type SafeAreaViewProps,
 } from 'react-native-safe-area-context';
 import { ColorName } from '../colors';
@@ -66,7 +67,7 @@ type LayoutStyleProps = Pick<
 > & {
   inverse?: boolean;
   transparent?: boolean;
-  colorName?: ColorName;
+  backgroundColorName?: ColorName;
   borderColorName?: ColorName;
   fullWidth?: boolean;
   withKeyboardAvoidingView?: boolean;
@@ -123,7 +124,7 @@ export function ThemedView({
   borderColor,
   transparent,
   backgroundColor,
-  colorName,
+  backgroundColorName,
   borderColorName,
   overflow,
   fullWidth,
@@ -136,7 +137,9 @@ export function ThemedView({
 }: ThemedViewProps) {
   const theme = useColors();
   const layoutStyle: ViewStyle = {
-    backgroundColor: 'transparent',
+    backgroundColor: backgroundColorName
+      ? theme[backgroundColorName]
+      : 'transparent',
     position,
     top,
     left,
@@ -252,7 +255,7 @@ export function ThemedSafeAreaView({
   borderWidth,
   borderColor,
   backgroundColor,
-  colorName,
+  backgroundColorName,
   borderColorName,
   transparent,
   fullWidth,
@@ -312,9 +315,22 @@ export function ThemedSafeAreaView({
     borderColor: borderColorName ? colors[borderColorName] : borderColor,
     overflow,
   };
+  const insets = useSafeAreaInsets();
 
   return (
-    <SafeAreaView style={[layoutStyle, style]} {...otherProps}>
+    <View
+      style={[
+        {
+          paddingLeft: insets.left,
+          paddingRight: insets.right,
+          paddingTop: insets.top,
+          paddingBottom: insets.bottom,
+        },
+        layoutStyle,
+        style,
+      ]}
+      {...otherProps}
+    >
       {withKeyboardAvoidingView ? (
         <GenericKeyboardAvoidingView
           dismissKeyboardOnTapOutside={dismissKeyboardOnTapOutside}
@@ -324,7 +340,7 @@ export function ThemedSafeAreaView({
       ) : (
         children
       )}
-    </SafeAreaView>
+    </View>
   );
 }
 
