@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+
 import { ThemedText } from '../modules/theme/components/themed-text';
 import { ThemedSafeAreaView } from '../modules/theme/components/themed-view';
 

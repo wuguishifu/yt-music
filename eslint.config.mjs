@@ -1,3 +1,4 @@
+import importPlugin from 'eslint-plugin-import';
 import nx from '@nx/eslint-plugin';
 
 export default [
@@ -8,6 +9,9 @@ export default [
     ignores: ['**/dist', '**/out-tsc'],
   },
   {
+    plugins: {
+      import: importPlugin,
+    },
     files: ['**/*.ts', '**/*.tsx', '**/*.js', '**/*.jsx'],
     rules: {
       '@nx/enforce-module-boundaries': [
@@ -21,6 +25,12 @@ export default [
               onlyDependOnLibsWithTags: ['*'],
             },
           ],
+        },
+      ],
+      'import/order': [
+        'error',
+        {
+          'newlines-between': 'always',
         },
       ],
     },

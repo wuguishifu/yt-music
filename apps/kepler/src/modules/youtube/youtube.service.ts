@@ -1,6 +1,7 @@
+import { spawn } from 'node:child_process';
+
 import { YoutubeMetadata, youtubeMetadataSchema } from '@libs/contracts-kepler';
 import { Injectable } from '@nestjs/common';
-import { spawn } from 'node:child_process';
 
 @Injectable()
 export class YoutubeService {

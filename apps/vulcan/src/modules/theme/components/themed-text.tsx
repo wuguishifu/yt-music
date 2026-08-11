@@ -1,4 +1,5 @@
 import { Text, TextStyle, type TextProps } from 'react-native';
+
 import { ColorName } from '../colors';
 import { useColors } from '../hooks/use-colors';
 import { typeScale, TypeScale } from '../type-scale';

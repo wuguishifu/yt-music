@@ -6,6 +6,7 @@ import {
   FastifyAdapter,
   type NestFastifyApplication,
 } from '@nestjs/platform-fastify';
+
 import { AppModule } from './app/app.module';
 
 async function bootstrap() {

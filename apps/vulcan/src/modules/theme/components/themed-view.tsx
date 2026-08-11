@@ -8,10 +8,10 @@ import {
   type ViewStyle,
 } from 'react-native';
 import {
-  SafeAreaView,
   useSafeAreaInsets,
   type SafeAreaViewProps,
 } from 'react-native-safe-area-context';
+
 import { ColorName } from '../colors';
 import { useColors } from '../hooks/use-colors';
 
