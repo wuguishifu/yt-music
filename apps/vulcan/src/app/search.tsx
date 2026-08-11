@@ -1,21 +1,17 @@
-import { StyleSheet } from 'react-native';
-
-import { ThemedText } from '../modules/theme/components/themed-text';
-import { ThemedSafeAreaView } from '../modules/theme/components/themed-view';
+import {
+  ThemedSafeAreaView,
+  ThemedView,
+} from '../modules/theme/components/themed-view';
 
 export default function Search() {
   return (
-    <ThemedSafeAreaView style={styles.container}>
-      <ThemedText>Search</ThemedText>
+    <ThemedSafeAreaView edges={['top']}>
+      <ThemedView
+        borderWidth={1}
+        width="100%"
+        flex={1}
+        borderColor="white"
+      ></ThemedView>
     </ThemedSafeAreaView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    gap: 16,
-  },
-});

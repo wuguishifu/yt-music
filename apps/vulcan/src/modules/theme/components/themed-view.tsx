@@ -8,12 +8,14 @@ import {
   type ViewStyle,
 } from 'react-native';
 import {
+  Edge,
   useSafeAreaInsets,
   type SafeAreaViewProps,
 } from 'react-native-safe-area-context';
 
 import { ColorName } from '../colors';
 import { useColors } from '../hooks/use-colors';
+import { defined } from '../utils';
 
 type LayoutStyleProps = Pick<
   ViewStyle,
@@ -136,7 +138,7 @@ export function ThemedView({
   ...otherProps
 }: ThemedViewProps) {
   const theme = useColors();
-  const layoutStyle: ViewStyle = {
+  const layoutStyle: ViewStyle = defined<LayoutStyleProps>({
     backgroundColor: backgroundColorName
       ? theme[backgroundColorName]
       : 'transparent',
@@ -187,7 +189,7 @@ export function ThemedView({
     borderColor: borderColorName ? theme[borderColorName] : borderColor,
     overflow,
     zIndex,
-  };
+  });
 
   return (
     <View style={[layoutStyle, style]} {...otherProps}>
@@ -263,10 +265,11 @@ export function ThemedSafeAreaView({
   children,
   withKeyboardAvoidingView,
   dismissKeyboardOnTapOutside,
+  edges,
   ...otherProps
 }: ThemedSafeAreaViewProps) {
   const colors = useColors();
-  const layoutStyle: ViewStyle = {
+  const layoutStyle: ViewStyle = defined({
     backgroundColor: 'transparent',
     ...(fullWidth ? { width: '100%' } : {}),
     ...(flex === undefined ? { flex: 1 } : { flex }),
@@ -314,23 +317,35 @@ export function ThemedSafeAreaView({
     borderWidth,
     borderColor: borderColorName ? colors[borderColorName] : borderColor,
     overflow,
-  };
+  });
   const insets = useSafeAreaInsets();
 
+  const edgeItems: Edge[] = edges
+    ? Array.isArray(edges)
+      ? edges
+      : Object.entries(edges)
+    : [];
+
+  const safeAreaStyle = edgeItems.reduce<ViewStyle>((acc, curr) => {
+    switch (curr) {
+      case 'top':
+        acc.paddingTop = insets.top;
+        break;
+      case 'bottom':
+        acc.paddingBottom = insets.bottom;
+        break;
+      case 'left':
+        acc.paddingLeft = insets.left;
+        break;
+      case 'right':
+        acc.paddingRight = insets.right;
+        break;
+    }
+    return acc;
+  }, {});
+
   return (
-    <View
-      style={[
-        {
-          paddingLeft: insets.left,
-          paddingRight: insets.right,
-          paddingTop: insets.top,
-          paddingBottom: insets.bottom,
-        },
-        layoutStyle,
-        style,
-      ]}
-      {...otherProps}
-    >
+    <View style={[safeAreaStyle, layoutStyle, style]} {...otherProps}>
       {withKeyboardAvoidingView ? (
         <GenericKeyboardAvoidingView
           dismissKeyboardOnTapOutside={dismissKeyboardOnTapOutside}

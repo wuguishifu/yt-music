@@ -3,6 +3,7 @@ import { Text, TextStyle, type TextProps } from 'react-native';
 import { ColorName } from '../colors';
 import { useColors } from '../hooks/use-colors';
 import { typeScale, TypeScale } from '../type-scale';
+import { defined } from '../utils';
 
 export type ThemedTextProps = TextProps & {
   type?: TypeScale;
@@ -70,7 +71,7 @@ export function ThemedText({
   const colors = useColors();
   const textColor = color ?? (colorName ? colors[colorName] : colors.text);
 
-  const inlineTextStyle: TextStyle = {
+  const inlineTextStyle: TextStyle = defined({
     ...(textDecorationLine && { textDecorationLine }),
     flex,
     maxWidth,
@@ -94,7 +95,7 @@ export function ThemedText({
     textAlign,
     alignSelf,
     flexShrink,
-  };
+  });
 
   return (
     <Text
