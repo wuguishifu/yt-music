@@ -12,12 +12,15 @@ import {
 } from 'redux-persist';
 import autoMergeLevel2 from 'redux-persist/lib/stateReconciler/autoMergeLevel2';
 
-import { searchReducer, searchSliceName } from '../search/search.slice';
+import {
+  downloadsReducer,
+  downloadsSliceName,
+} from '../downloads/downloads-slice';
 
 import { mmkvStorage } from './mmkv-store';
 
 const rootReducer = combineReducers({
-  [searchSliceName]: searchReducer,
+  [downloadsSliceName]: downloadsReducer,
 });
 
 type RootState = ReturnType<typeof rootReducer>;
@@ -25,7 +28,7 @@ type RootState = ReturnType<typeof rootReducer>;
 const persistConfig: PersistConfig<RootState> = {
   key: 'root',
   storage: mmkvStorage,
-  whitelist: [],
+  whitelist: [downloadsSliceName],
   stateReconciler: autoMergeLevel2,
 };
 

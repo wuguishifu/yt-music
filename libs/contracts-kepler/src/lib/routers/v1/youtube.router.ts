@@ -1,7 +1,7 @@
 import z from 'zod';
 
-import { c } from '../../contract.js';
-import { youtubeMetadataSchema } from '../../types/youtube.js';
+import { c } from '../../contract.ts';
+import { youtubeMetadataSchema } from '../../types/youtube.ts';
 
 export const youtubeRouter = c.router(
   {

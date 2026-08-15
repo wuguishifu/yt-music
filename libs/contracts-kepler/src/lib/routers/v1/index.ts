@@ -1,6 +1,6 @@
-import { c } from '../../contract.js';
+import { c } from '../../contract.ts';
 
-import { youtubeRouter } from './youtube.router.js';
+import { youtubeRouter } from './youtube.router.ts';
 
 export const v1Router = c.router(
   {

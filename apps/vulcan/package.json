@@ -7,6 +7,7 @@
     "eas-build-post-install": "cd ../../ && node tools/scripts/eas-build-post-install.mjs . apps/vulcan"
   },
   "dependencies": {
+    "@libs/contracts-kepler": "workspace:*",
     "@expo/vector-icons": "*",
     "@expo/metro": "*",
     "@testing-library/react-native": "*",

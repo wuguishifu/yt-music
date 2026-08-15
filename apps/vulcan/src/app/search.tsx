@@ -1,30 +1,35 @@
-import _ from 'lodash';
-import { useEffect, useRef, useState } from 'react';
 import { Keyboard, TouchableWithoutFeedback } from 'react-native';
+import { useState } from 'react';
+import z from 'zod';
+import { YoutubeMetadata } from '@libs/contracts-kepler';
 
 import { Search } from '../components/search';
+import { keplerApi } from '../modules/kepler/kepler-api';
 import { ThemedText } from '../modules/theme/components/themed-text';
 import { ThemedSafeAreaView } from '../modules/theme/components/themed-view';
 
+// (https://www.youtube.com/watch?v=atgjKEgSqSU&list=RDatgjKEgSqSU&start_radio=1)
+
 export default function SearchScreen() {
-  const [query, setQuery] = useState<string>('');
+  const [result, setResult] = useState<YoutubeMetadata>();
 
-  const debouncedSearch = useRef(
-    _.debounce((query: string) => {
-      if (!query.trim()) return;
-      console.log(query);
-    }, 500),
-  );
+  const onSubmit = async (value: string) => {
+    const parsedUrl = z.url().safeParse(value);
+    if (!parsedUrl.success) return;
 
-  useEffect(() => {
-    debouncedSearch.current(query);
-  }, [query]);
+    const result = await keplerApi.v1.youtube.getMetadata.query({
+      query: { includeStreamUrl: true, url: parsedUrl.data },
+    });
+
+    if (result.status === 200) setResult(result.body);
+  };
 
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
       <ThemedSafeAreaView edges={['top']}>
         <ThemedText type="h2">Search</ThemedText>
-        <Search onValueChange={setQuery} style={{ marginTop: 16 }} />
+        <Search onSubmit={onSubmit} style={{ marginTop: 16 }} />
+        <ThemedText>{JSON.stringify(result, null, 2)}</ThemedText>
       </ThemedSafeAreaView>
     </TouchableWithoutFeedback>
   );

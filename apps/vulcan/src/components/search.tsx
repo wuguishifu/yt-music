@@ -7,17 +7,18 @@ import { useColors } from '../modules/theme/hooks/use-colors';
 import { typeScale } from '../modules/theme/type-scale';
 
 type SearchProps = {
-  onValueChange: (value: string) => void;
+  onValueChange?: (value: string) => void;
+  onSubmit?: (value: string) => void;
   style?: StyleProp<ViewStyle>;
 };
 
-export function Search({ onValueChange, style }: SearchProps) {
+export function Search({ onValueChange, onSubmit, style }: SearchProps) {
   const [focused, setFocused] = useState(false);
   const colors = useColors();
   const textInputRef = useRef<TextInput>(null);
 
   const handleClear = () => {
-    onValueChange('');
+    onValueChange?.('');
     textInputRef.current?.clear();
     textInputRef.current?.focus();
   };
@@ -37,6 +38,9 @@ export function Search({ onValueChange, style }: SearchProps) {
       <SearchIcon color={colors.textMuted} />
       <TextInput
         ref={textInputRef}
+        onChange={
+          onValueChange ? (e) => onValueChange(e.nativeEvent.text) : undefined
+        }
         onChangeText={onValueChange}
         onFocus={() => setFocused(true)}
         onBlur={() => setFocused(false)}
@@ -51,6 +55,11 @@ export function Search({ onValueChange, style }: SearchProps) {
         placeholderTextColor={colors.textMuted}
         autoCapitalize="none"
         autoCorrect={false}
+        returnKeyType="search"
+        returnKeyLabel="search"
+        onSubmitEditing={
+          onSubmit ? (e) => onSubmit(e.nativeEvent.text) : undefined
+        }
       />
       <Pressable onPress={handleClear}>
         <XIcon color={colors.textMuted} />

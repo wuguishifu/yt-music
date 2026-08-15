@@ -4,6 +4,9 @@
   "include": [".expo/types/**/*.ts", "expo-env.d.ts"],
   "references": [
     {
+      "path": "../../libs/contracts-kepler"
+    },
+    {
       "path": "./tsconfig.app.json"
     }
   ]

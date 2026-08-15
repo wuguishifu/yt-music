@@ -36,5 +36,9 @@
     ".expo/types/**/*.ts",
     "expo-env.d.ts"
   ],
-  "references": []
+  "references": [
+    {
+      "path": "../../libs/contracts-kepler/tsconfig.lib.json"
+    }
+  ]
 }

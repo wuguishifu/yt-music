@@ -1,5 +1,5 @@
-import { c } from './contract.js';
-import { v1Router } from './routers/v1/index.js';
+import { c } from './contract.ts';
+import { v1Router } from './routers/v1/index.ts';
 
 export const keplerRootRouter = c.router(
   {

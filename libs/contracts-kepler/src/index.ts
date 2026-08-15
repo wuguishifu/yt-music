@@ -1,2 +1,2 @@
-export * from './lib/root.js';
-export * from './lib/types/youtube.js';
+export * from './lib/root.ts';
+export * from './lib/types/youtube.ts';
