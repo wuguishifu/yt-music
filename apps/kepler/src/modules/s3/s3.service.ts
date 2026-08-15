@@ -2,6 +2,8 @@ import { Readable } from 'stream';
 
 import {
   GetObjectCommand,
+  HeadObjectCommand,
+  NotFound,
   PutObjectCommand,
   PutObjectCommandOutput,
   S3Client,
@@ -44,6 +46,21 @@ export class S3Service {
         ContentType: contentType,
       }),
     );
+  }
+
+  public async objectExists({ key }: { key: string }): Promise<boolean> {
+    try {
+      await this.s3Client.send(
+        new HeadObjectCommand({
+          Bucket: this.configService.env.S3_BUCKET,
+          Key: key,
+        }),
+      );
+      return true;
+    } catch (error) {
+      if (error instanceof NotFound) return false;
+      throw error;
+    }
   }
 
   public getSignedUrl({ key }: { key: string }): Promise<string> {
