@@ -29,13 +29,17 @@ export class YoutubeService {
   }
 
   public async getStreamUrl(url: string): Promise<string> {
-    return await this.runYtDlp([
+    const output = await this.runYtDlp([
       '-g',
+      '-U',
       '-f',
       'bestaudio[ext=m4a]/bestaudio',
       '--no-playlist',
       url,
     ]);
+
+    const lines = output.trim().split('\n');
+    return lines[lines.length - 1];
   }
 
   private async runYtDlp(args: string[]): Promise<string> {

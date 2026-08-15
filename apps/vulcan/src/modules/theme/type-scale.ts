@@ -43,6 +43,14 @@ export const typeScale = {
     // lineHeight: 1.55 * 16,
     fontWeight: 400,
   },
+  sm: {
+    fontSize: 13,
+    fontWeight: 400,
+  },
+  xs: {
+    fontSize: 11,
+    fontWeight: 400,
+  },
 } as const satisfies Record<string, StyleProp<TextStyle>>;
 
 export type TypeScale = keyof typeof typeScale;

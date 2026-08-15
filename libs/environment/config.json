@@ -7,6 +7,10 @@
       "hasSecrets": true,
       "hasConvex": true,
       "publicPrefix": "EXPO_PUBLIC_"
+    },
+    "kepler": {
+      "hasSecrets": true,
+      "hasConvex": true
     }
   }
 }
